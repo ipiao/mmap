@@ -44,15 +44,6 @@ func struct2map(v reflect.Value, tagName string) map[string]interface{} {
 	return nil
 }
 
-// StructMarshalToMap turn struct to map by using jsonmarshal
-// bennchmerk 不通过
-func StructMarshalToMap(obj interface{}) map[string]interface{} {
-	bs, _ := json.Marshal(obj)
-	var res = make(map[string]interface{})
-	json.Unmarshal(bs, &res)
-	return res
-}
-
 // SnakeName 驼峰转蛇形
 func SnakeName(base string) string {
 	var r = make([]rune, 0, len(base))
@@ -69,4 +60,13 @@ func SnakeName(base string) string {
 		r = append(r, b[i])
 	}
 	return string(r)
+}
+
+// StructMarshalToMap turn struct to map by using jsonmarshal
+// bennchmerk 不通过
+func StructMarshalToMap(obj interface{}) map[string]interface{} {
+	bs, _ := json.Marshal(obj)
+	var res = make(map[string]interface{})
+	json.Unmarshal(bs, &res)
+	return res
 }
