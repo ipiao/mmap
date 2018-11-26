@@ -6,11 +6,11 @@ import (
 	"strings"
 )
 
-type AutoModel struct {
-	Value string
-}
-
 type Map map[string]interface{}
+
+func CreateMap(i interface{}) Map {
+	return Map(Struct2Map(i))
+}
 
 func (m Map) Get(key string) interface{} {
 	if len(key) == 0 {
