@@ -60,6 +60,22 @@ func (m Map) GetInt(key string) int {
 	}
 }
 
+func (m Map) GetInt64(key string) int64 {
+	i := m.Get(key)
+	switch i.(type) {
+	case float64:
+		return int64(i.(float64))
+	case json.Number:
+		n, _ := i.(json.Number).Int64()
+		return n
+	case string:
+		n, _ := strconv.ParseInt(i.(string), 10, 64)
+		return n
+	default:
+		return 0
+	}
+}
+
 func (m Map) GetFloat64(key string) float64 {
 	i := m.Get(key)
 	switch i.(type) {
